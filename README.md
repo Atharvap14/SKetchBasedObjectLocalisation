@@ -1,7 +1,7 @@
 # SKetchBasedObjectLocalisation
 ## Data Preperation
 To prepare the QuickDraw data follow the instrctions provied in SkGuOL.
-Additionaly to train UP-DETR
+Additionaly to train UP-DETR, please setup the [https://github.com/mtli/PhotoSketch](PhotoSketch) repository and sketchify the training dataset using the provided scripts in their repository.
 ## DETR-SEM_PCYC
 Use the file detr_hands_on.ipynb, edit the directory name in the variable dir to your dataset's directory path.
 Run the notebook to generate detection bounding boxes and confidence.

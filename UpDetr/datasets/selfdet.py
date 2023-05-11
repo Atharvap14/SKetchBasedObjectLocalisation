@@ -15,7 +15,7 @@ from torchvision.transforms import transforms
 from PIL import ImageFilter
 import random
 
-def get_random_patch_from_img(img, min_pixel=8):
+def get_random_patch_from_img(img, min_pixel=32):
     """
     :param img: original image
     :param min_pixel: min pixels of the query patch
@@ -55,6 +55,7 @@ class SelfDet(Dataset):
     def __getitem__(self, item):
         img_path = self.files[item]
         img = Image.open(img_path).convert("RGB")
+        sketch_img = Image.open(img_path.replace('data', 'sketchified'))
         w, h = img.size
         if w<=16 or h<=16:
             return self[(item+1)%len(self)]
@@ -66,7 +67,7 @@ class SelfDet(Dataset):
         area = []
         patches = []
         while len(area) < self.num_patches:
-            patch, x, y, sw, sh = get_random_patch_from_img(img)
+            patch, x, y, sw, sh = get_random_patch_from_img(sketch_img)
             boxes.append([x, y, x + sw, y + sh])
             area.append(sw * sh)
             iscrowd.append(0)
